@@ -20,7 +20,7 @@
     };
   };
   boot.initrd.luks.reusePassphrases = true;
-  services.logind.lidSwitch = "hybrid-sleep";
+  #services.logind.lidSwitch = "hybrid-sleep";
 
   nix = {
     settings.allowed-users = [ "@wheel" ];
@@ -130,7 +130,7 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "daily";
   system.autoUpgrade.flake = "/home/sei/system-config/";
-  system.autoUpgrade.flags = [ "--update-inputs" "nixpkgs" ];
+  system.autoUpgrade.flags = [ "--update-inputs" "nixpkgs" "--commit-lock-file" ];
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
