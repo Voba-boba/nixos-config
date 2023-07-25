@@ -129,8 +129,8 @@
   #system.copySystemConfiguration = true;
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "daily";
-  system.autoUpgrade.flake = "/home/sei/system-config/";
-  system.autoUpgrade.flags = [ "--update-inputs" "nixpkgs" "--commit-lock-file" ];
+  system.autoUpgrade.flake = "github:Voba-boba/nixos-config";
+  #system.autoUpgrade.flags = [ "--update-inputs" "nixpkgs" ];
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
