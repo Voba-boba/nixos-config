@@ -20,13 +20,11 @@
     };
   };
   boot.initrd.luks.reusePassphrases = true;
-  #services.logind.lidSwitch = "hybrid-sleep";
 
   nix = {
     settings.allowed-users = [ "@wheel" ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
-  # nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "cone"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -49,7 +47,6 @@
   console = {
     font = "LatGrkCyr-8x16";
     keyMap = "us";
-    #useXkbConfig = true; # use xkbOptions in tty.
   };
 
   # Enable GNOME.
@@ -90,9 +87,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sei = {
     isNormalUser = true;
+    group = "sei";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     description = "Егор";
   };
+  users.groups.sei = { };
 
   # Installed packages
   environment.systemPackages = with pkgs; [
@@ -122,15 +121,11 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
   # Doesn't work with flakes.
   #system.copySystemConfiguration = true;
   system.autoUpgrade.enable = true;
   system.autoUpgrade.dates = "daily";
   system.autoUpgrade.flake = "github:Voba-boba/nixos-config";
-  #system.autoUpgrade.flags = [ "--update-inputs" "nixpkgs" ];
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
